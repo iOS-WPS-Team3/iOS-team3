@@ -27,6 +27,7 @@ class CategoryViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.addNavigationBarCartButton()
+    self.setupBroccoliNavigationBar(title: "카테고리")
   }
   
   private func dataRequest(categoryId: Int) {
