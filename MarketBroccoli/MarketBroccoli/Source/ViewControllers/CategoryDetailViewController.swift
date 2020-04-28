@@ -13,6 +13,10 @@ import Alamofire
 class CategoryDetailViewController: UIViewController {
   // MARK: - Properties
   private var customMenuBar = CategoryDetailHeaderView()
+  private let customMenuBarSeperator = UIView().then {
+    $0.backgroundColor = .darkGray
+    $0.alpha = 0.4
+  }
   let customMenuBarheigt: CGFloat = 50
   private lazy var collectionViewFlowLayout = UICollectionViewFlowLayout()
   private lazy var collectionView = UICollectionView(
@@ -76,6 +80,7 @@ class CategoryDetailViewController: UIViewController {
     setupUI()
     setupLayout()
     setupNavigtion()
+    self.collectionView.isHidden = true
   }
   
   var itemWidth: CGFloat = 0
@@ -92,6 +97,9 @@ class CategoryDetailViewController: UIViewController {
       .itemSize
       .width ?? 0
     print(itemWidth, "제발 나와줘")
+    let collectionViewSubCategoryId = (subCategoryId ?? 0) - 1
+    self.collectionView.scrollToItem(at: IndexPath(item: collectionViewSubCategoryId, section: 0), at: .right, animated: false)
+    self.collectionView.isHidden = false
   }
 
   override func viewDidLayoutSubviews() {
@@ -124,7 +132,15 @@ class CategoryDetailViewController: UIViewController {
     customMenuBar.snp.makeConstraints {
       $0.top.leading.trailing.equalTo(guide)
       $0.height.equalTo(customMenuBarheigt)
+    }
+    [customMenuBarSeperator].forEach {
+      view.addSubview($0)
+    }
+    customMenuBarSeperator.snp.makeConstraints {
+      $0.top.equalTo(customMenuBar.snp.bottom)
+      $0.leading.trailing.equalTo(guide)
       $0.bottom.equalTo(collectionView.snp.top)
+      $0.height.equalTo(0.4)
     }
     [selectedCategory].forEach {
       customMenuBar.addSubview($0)
@@ -205,36 +221,11 @@ extension CategoryDetailViewController: UICollectionViewDataSource {
       cell.subConfigure(subID: subCategoryID)
       return cell
     }
-//    switch collectionViewSubCategoryId {
-//    case 0:
-//      let cell = collectionView.dequeue(CategoryDetailCollectionViewCell.self, indexPath: indexPath)
-//      print("0번째 didSet categoryID", categoryId)
-//      print("컬렉션뷰서브카테고리", collectionViewSubCategoryId)
-//      print("전체보기", indexPath.row)
-//      cell.configure(id: categoryId)
-//      return cell
-//    default:
-//      switch indexPath.row {
-//      case 0:
-//        let cell = collectionView.dequeue(CategoryDetailCollectionViewCell.self, indexPath: indexPath)
-//        cell.configure(id: categoryId)
-//        print("몇번 째를 눌렀나 indexPath.row[0]", collectionViewSubCategoryId - 1)
-//        return cell
-//      default:
-//        let cell = collectionView.dequeue(CategoryDetailCollectionViewCell.self, indexPath: indexPath)
-//        let subCategoryIncerease = categoryData[0..<categoryId - 1].reduce(0) { $0 + $1.row.count } - categoryId + 1
-//        print("서브 카테고리의 카운트", categoryData[0..<categoryId - 1].reduce(0) { $0 + $1.row.count })
-//        print("0번째 아님didSet subCategoryIncerease", subCategoryIncerease)
-//        let subCategoryID = subCategoryIncerease + indexPath.row
-//        print("indexPath.row[1~]", collectionViewSubCategoryId - 1)
-//        print("0번째 아님didSet subCategoryID", subCategoryID)
-//        cell.subConfigure(subID: subCategoryID)
-//        return cell
-//      }
-//    }
+
   }
 }
 
-// MARK: - ACTIONS
-//  extension CategoryDetailViewController {
-//}
+ // MARK:- ACTIONS
+  extension CategoryDetailViewController {
+    
+}

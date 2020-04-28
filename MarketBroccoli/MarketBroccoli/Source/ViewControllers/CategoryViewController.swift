@@ -24,6 +24,10 @@ class CategoryViewController: UIViewController {
     setupUI()
     setupLayout()    
   }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.addNavigationBarCartButton()
+  }
   
   private func dataRequest(categoryId: Int) {
     RequestManager.shared.categoryRequest(url: .initial, method: .get, categoryId: categoryId) { result in
@@ -38,10 +42,10 @@ class CategoryViewController: UIViewController {
   
   // MARK: - Setup Attribute
   private func setupNavigation() {
-    self.addNavigationBarCartButton()
     self.setupBroccoliNavigationBar(title: "카테고리")
   }
   private func setupUI() {
+    self.tabBarController?.delegate = self
     tableView.dataSource = self
     tableView.delegate = self
     tableView.tableHeaderView =
@@ -235,4 +239,10 @@ extension CategoryViewController: UITableViewDelegate {
       return UITableView.automaticDimension
     }
    }
+}
+
+extension CategoryViewController: UITabBarControllerDelegate {
+  func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+    tableView.setContentOffset(.zero, animated: true)
+  }
 }

@@ -56,9 +56,6 @@ class CategoryDetailHeaderView: UIScrollView {
     $0.setTitleColor(UIColor.gray, for: .normal)
     //    $0.addTarget(self(), action: #selector(<#T##@objc method#>), for: .touchUpInside)
   }
-  private let bottomLine = UIView().then {
-    $0.backgroundColor = .red
-  }
   
     // MARK: - Life Cycle
   override init(frame: CGRect) {
@@ -76,13 +73,7 @@ class CategoryDetailHeaderView: UIScrollView {
     self.backgroundColor = .white
 //    self.contentSize = CGSize()
 //    self.isScrollEnabled = true
-    [bottomLine].forEach {
-      self.addSubview($0)
-    }
-    bottomLine.snp.makeConstraints {
-      $0.leading.trailing.bottom.equalToSuperview()
-      $0.height.equalTo(0.4)
-    }
+//    self.setContentOffset(<#T##contentOffset: CGPoint##CGPoint#>, animated: <#T##Bool#>) -> 여기 확인 한거
   }
   private func setupTitle() {
     [title].forEach {
@@ -90,7 +81,7 @@ class CategoryDetailHeaderView: UIScrollView {
     }
     title.snp.makeConstraints {
       $0.top.equalToSuperview().offset(10)
-      $0.bottom.equalTo(bottomLine.snp.top).offset(-10)
+      $0.bottom.equalToSuperview().offset(-10)
       $0.leading.equalToSuperview().offset(16)
       $0.trailing.equalToSuperview().offset(-16)
     }

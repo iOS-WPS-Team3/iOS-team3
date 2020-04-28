@@ -46,6 +46,8 @@ extension UIViewController {
     
     navigationController?.do({
       $0.navigationBar.tintColor = .black
+      $0.navigationBar.barStyle = .default
+      $0.navigationBar.shadowImage = UIImage()
       $0.navigationBar.barTintColor = .white
       $0.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     })

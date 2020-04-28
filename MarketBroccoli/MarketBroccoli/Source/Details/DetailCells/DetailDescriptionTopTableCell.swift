@@ -35,6 +35,7 @@ class DetailDescriptionTopTableCell: UITableViewCell {
   private let seperator = Seperator()
   private let infoStackView = UIStackView().then {
     $0.axis = .vertical
+    $0.spacing = 8
   }
   private let infoDummy = ["판매단위", "중량/용량", "원산지", "포장타입"]
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -70,13 +71,17 @@ extension DetailDescriptionTopTableCell {
 extension DetailDescriptionTopTableCell {
   private func makeinfoStackView() {
     let textArray = infoDummy.compactMap { text -> CGFloat? in
-      let label = UILabel()
-      label.text = text
+      let label = UILabel().then {
+        $0.text = text
+        $0.font = .systemFont(ofSize: 14)
+      }
       return label.getWidth()
     }
     for (idx, text) in infoDummy.enumerated() {
       let infolabel = UILabel().then { lbl in
         lbl.text = text
+        lbl.textColor = .kurlyGray1
+        lbl.font = .systemFont(ofSize: 14)
         lbl.snp.makeConstraints { make in
           make.width.equalTo((textArray.max() ?? 0) + 10)
         }
@@ -84,6 +89,7 @@ extension DetailDescriptionTopTableCell {
       
       let infoTextLabel = UILabel().then { lbl in
         lbl.text = ""
+        lbl.font = .systemFont(ofSize: 14)
         lbl.tag = 9999 - idx
       }
       

@@ -47,6 +47,7 @@ class PriceStackView: UIStackView {
   }
   private let loginDescriptionLabel = UILabel().then {
     $0.textColor = .kurlyMainPurple
+    $0.font = .systemFont(ofSize: 14)
   }
   override init(frame: CGRect) {
     super.init(frame: frame)

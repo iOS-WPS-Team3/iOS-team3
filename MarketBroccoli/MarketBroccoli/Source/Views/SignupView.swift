@@ -48,7 +48,7 @@ class SignupView: UIView {
   lazy var passwordTextField = UITextField().then {
     $0.signupStyle(round: .roundedRect, clearButton: .whileEditing)
     $0.placeholder = "비밀번호를 입력해주세요"
-//    $0.isSecureTextEntry = true
+//    $0.keyboardType = .asciiCapable
     $0.autocapitalizationType = .none
     $0.delegate = self
     $0.addTarget(self, action: #selector(passwordTextFieldEditingChanged(_:text:)), for: .editingChanged)
