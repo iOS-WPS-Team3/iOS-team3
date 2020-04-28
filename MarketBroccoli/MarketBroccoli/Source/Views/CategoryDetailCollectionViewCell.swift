@@ -18,7 +18,7 @@ class CategoryDetailCollectionViewCell: UICollectionViewCell {
     .then {
       $0.register(cell: ProductCollectionCell.self)
   }
-  private var categoryProductList: CategoryProudcutList? {
+  var categoryProductList: CategoryProudcutList? {
     didSet {
       setupFlowLayout()
       collectionView.reloadData()
@@ -44,7 +44,7 @@ class CategoryDetailCollectionViewCell: UICollectionViewCell {
   }
   // MARK: - Setup Attribute
   private func setupUI() {
-    collectionView.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 1, alpha: 1)
+    collectionView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.9529411765, blue: 0.9529411765, alpha: 1)
     collectionView.dataSource = self
     collectionView.delegate = self
     [collectionView] .forEach {
