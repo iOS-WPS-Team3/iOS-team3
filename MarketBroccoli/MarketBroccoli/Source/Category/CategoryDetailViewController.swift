@@ -180,7 +180,10 @@ class CategoryDetailViewController: UIViewController {
 }
 // MARK: - UICollectionViewDelegate
 extension CategoryDetailViewController: UICollectionViewDelegate {
-  func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+  func scrollViewWillEndDragging(
+    _ scrollView: UIScrollView,
+    withVelocity velocity: CGPoint,
+    targetContentOffset: UnsafeMutablePointer<CGPoint>) {
     if scrollView == collectionView {
       let cellWidth = itemWidth * 2 + (UI.inset + UI.spacing * 2)
       var page = round(collectionView.contentOffset.x / cellWidth)

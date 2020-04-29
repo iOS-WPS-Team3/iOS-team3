@@ -16,7 +16,7 @@ class CategoryViewController: UIViewController {
   private let oftenProduct = ["자주 사는 상품"]
   private var lastSelection: IndexPath?
   private var refreshControl = UIRefreshControl()
-  private var dummyData: CategoryModel2? = nil
+  
 // MARK: - Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -189,7 +189,7 @@ extension RecommendationView: UITableViewDataSource {
     case 4:
       guard let model = MDModel else { return UITableViewCell() }
       let cell = tableView.dequeue(HomeMDTableCell.self)
-      cell.configure(items: model.flatMap { $0 })
+      cell.configure(items: model)
       return cell
     case 5:
       guard let model = newModel else { return UITableViewCell() }
