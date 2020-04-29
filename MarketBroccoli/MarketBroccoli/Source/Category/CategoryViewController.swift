@@ -26,8 +26,9 @@ class CategoryViewController: UIViewController {
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.addNavigationBarCartButton()
     self.setupBroccoliNavigationBar(title: "카테고리")
+    self.addNavigationBarCartButton()
+    self.tabBarController?.delegate = self
   }
   
   private func dataRequest(categoryId: Int) {
@@ -46,7 +47,6 @@ class CategoryViewController: UIViewController {
     self.setupBroccoliNavigationBar(title: "카테고리")
   }
   private func setupUI() {
-    self.tabBarController?.delegate = self
     tableView.dataSource = self
     tableView.delegate = self
     tableView.tableHeaderView =
