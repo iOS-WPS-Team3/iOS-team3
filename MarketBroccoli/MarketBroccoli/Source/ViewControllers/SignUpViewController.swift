@@ -43,6 +43,7 @@ class SignUpViewController: UIViewController {
     moveKeyboard()
     setupNavigationBackButton()
   }
+  
   private func setupUI() {
     [signupView].forEach {
       self.view.addSubview($0)
