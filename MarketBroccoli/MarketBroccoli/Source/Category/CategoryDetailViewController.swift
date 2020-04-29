@@ -242,7 +242,7 @@ extension CategoryDetailViewController {
     }
     for idx in 0..<currentPage { // getWidth() 카테고리 크기 구하는 함수
       label.text = categoryData[categoryID].row[idx]
-      print("여기에 집중", categoryData[categoryID].row[idx])
+//      print("여기에 집중", categoryData[categoryID].row[idx])
       menuBarTextWidth += (label.getWidth() ?? 0) // getWidth() 텍스트 크기 구하는 함수
     }
     let textWidth = (label.getWidth() ?? 0)
