@@ -463,7 +463,6 @@
 		7C5A889224343AC4006361AC /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				7C5A889324343AD9006361AC /* SignupViewProtocol.swift */,
 				7C49C9E42448642300FE9B04 /* RequestProtocol.swift */,
 			);
 			path = Protocols;
@@ -474,6 +473,7 @@
 			children = (
 				722A54D02452C23200C81F82 /* AddProductCart */,
 				722A54CF2452C11A00C81F82 /* Search */,
+				FA486BA724593577007AE9EE /* Mycurly */,
 				7288F90624529B5600EBD058 /* Cart */,
 				7C16CEED2435D6F3007CD954 /* Details */,
 				7C16CEEB2435D641007CD954 /* Home */,
@@ -509,15 +509,10 @@
 		7C65ECB3242470AB0075606A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FAAFEB5E2424A74900452977 /* SettingsViewController.swift */,
 				7298BEFE242DDF2E005B0517 /* MarketBroccoliTabBarController.swift */,
 				7050F3192429CEBB00B8E13B /* CategoryViewController.swift */,
 				701C74C0244485B3009276FA /* CategoryDetailViewController.swift */,
 				70BB5437243B432F00BE81F4 /* BuyOftenViewController.swift */,
-				FAAE2E562424E3C400ACC5D3 /* SignUpViewController.swift */,
-				7050F3112424BA3800B8E13B /* LoginViewController.swift */,
-				7050F315242876AC00B8E13B /* IDFindViewController.swift */,
-				7050F317242876B600B8E13B /* PWFindViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -631,7 +626,6 @@
 		7C65ECC6242472F70075606A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				723851E024249C6400E8B206 /* UserInfoTableViewCell.swift */,
 				7050F31D242A3BB300B8E13B /* CategoryTableViewCell.swift */,
 				70E8178224360DF70010EB4C /* CategorySubTableViewCell.swift */,
 				70FF15D024499660006F25EF /* CategoryDetailCollectionViewCell.swift */,
@@ -639,13 +633,6 @@
 				70BB5441243CB3D200BE81F4 /* RecommendationCollectionViewCell.swift */,
 				70BB543F243C979A00BE81F4 /* CategorySectionHeaderView.swift */,
 				70FF15D22449A8FF006F25EF /* CategoryDetailHeaderView.swift */,
-				FA9AD74124287F51002D3504 /* SignupView.swift */,
-				FAAFEB602424A77900452977 /* SettingsTableViewCell.swift */,
-				FAB1FA47244819F900100C74 /* LoginView.swift */,
-				FAB1FA492449612B00100C74 /* IDFindView.swift */,
-				FAB1FA4B24496CF900100C74 /* PWFindView.swift */,
-				FA48FBFE24385A2D00E53EB5 /* AddressWebView.swift */,
-				FA48FBD3243319DE00E53EB5 /* SignupCheckBox.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -772,6 +759,43 @@
 				7C74E41D243D6C26001C6E4C /* WhyKurlyView.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		FA486BA5245934E4007AE9EE /* MycurlyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FAAFEB5E2424A74900452977 /* SettingsViewController.swift */,
+				FAAE2E562424E3C400ACC5D3 /* SignUpViewController.swift */,
+				7050F3112424BA3800B8E13B /* LoginViewController.swift */,
+				7050F315242876AC00B8E13B /* IDFindViewController.swift */,
+				7050F317242876B600B8E13B /* PWFindViewController.swift */,
+			);
+			path = MycurlyViewController;
+			sourceTree = "<group>";
+		};
+		FA486BA62459352A007AE9EE /* MycurlyView */ = {
+			isa = PBXGroup;
+			children = (
+				FA48FBD3243319DE00E53EB5 /* SignupCheckBox.swift */,
+				FA48FBFE24385A2D00E53EB5 /* AddressWebView.swift */,
+				723851E024249C6400E8B206 /* UserInfoTableViewCell.swift */,
+				FA9AD74124287F51002D3504 /* SignupView.swift */,
+				FAAFEB602424A77900452977 /* SettingsTableViewCell.swift */,
+				FAB1FA47244819F900100C74 /* LoginView.swift */,
+				FAB1FA492449612B00100C74 /* IDFindView.swift */,
+				FAB1FA4B24496CF900100C74 /* PWFindView.swift */,
+			);
+			path = MycurlyView;
+			sourceTree = "<group>";
+		};
+		FA486BA724593577007AE9EE /* Mycurly */ = {
+			isa = PBXGroup;
+			children = (
+				7C5A889324343AD9006361AC /* SignupViewProtocol.swift */,
+				FA486BA5245934E4007AE9EE /* MycurlyViewController */,
+				FA486BA62459352A007AE9EE /* MycurlyView */,
+			);
+			path = Mycurly;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
