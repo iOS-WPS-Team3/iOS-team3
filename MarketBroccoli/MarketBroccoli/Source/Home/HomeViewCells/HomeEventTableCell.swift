@@ -10,7 +10,7 @@ import UIKit
 
 class HomeEventTableCell: UITableViewCell {
   private let cellTitleLabel = UILabel().then {
-    $0.text = "이벤트 소식"
+    $0.text = "이벤트"
     $0.font = .boldSystemFont(ofSize: 20)
   }
   private let eventStackView = UIStackView().then {
@@ -32,17 +32,17 @@ class HomeEventTableCell: UITableViewCell {
 // MARK: - UI
 extension HomeEventTableCell {
   private func makeStackView() {
-    (1...3).forEach { _ in
+    for index in 1...3 {
       let innerView = UIView()
       let imageView = UIImageView().then {
-        $0.image = UIImage(named: "cloud2")
+        $0.image = UIImage(named: "cloud\(index)")
         $0.contentMode = .scaleToFill
       }
       let titleLabel = UILabel().then {
-        $0.text = "구름이는 귀엽다"
+        $0.text = "구름이 사진전"
       }
       let subTitleLabel = UILabel().then {
-        $0.text = "그것도 존나 귀엽다"
+        $0.text = "구름이 보고 가세요"
       }
       innerView.addSubviews([imageView, titleLabel, subTitleLabel])
       
@@ -54,7 +54,7 @@ extension HomeEventTableCell {
       titleLabel.snp.makeConstraints {
         $0.leading.equalTo(imageView.snp.trailing).offset(20)
         $0.trailing.equalToSuperview()
-        $0.centerY.equalTo(imageView.snp.centerY)
+        $0.bottom.equalTo(imageView.snp.centerY)
       }
       
       subTitleLabel.snp.makeConstraints {
@@ -79,7 +79,7 @@ extension HomeEventTableCell {
     }
     
     eventStackView.snp.makeConstraints {
-      $0.top.equalTo(cellTitleLabel.snp.bottom)
+      $0.top.equalTo(cellTitleLabel.snp.bottom).offset(8)
       $0.leading.bottom.trailing.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 10, bottom: 40, right: 0))
     }
   }
