@@ -9,7 +9,7 @@ import UIKit
 class SettingsViewController: UIViewController {
   var isLogin = false {
     didSet {
-      myCurlyTableView.reloadData()
+      myKurlyTableView.reloadData()
     }
   }
   
@@ -29,7 +29,7 @@ class SettingsViewController: UIViewController {
     ["로그아웃"]
   ]
   
-  private lazy var myCurlyTableView = UITableView(frame: .zero, style: .grouped).then {
+  private lazy var myKurlyTableView = UITableView(frame: .zero, style: .grouped).then {
     $0.sectionFooterHeight = 10
     $0.allowsSelection = true
     $0.dataSource = self
@@ -51,6 +51,7 @@ class SettingsViewController: UIViewController {
     super.viewWillAppear(animated)
     
     self.addNavigationBarCartButton()
+    self.tabBarController?.delegate = self
   }
 }
 
@@ -61,8 +62,8 @@ extension SettingsViewController {
   }
   
   private func setupUI() {
-    view.addSubviews([myCurlyTableView])
-    myCurlyTableView.snp.makeConstraints {
+    view.addSubviews([myKurlyTableView])
+    myKurlyTableView.snp.makeConstraints {
       $0.edges.equalToSuperview()
     }
   }
@@ -145,5 +146,11 @@ extension SettingsViewController: SettingsTableViewCellDelegate {
     let nextVC = UINavigationController(rootViewController: LoginViewController())
     nextVC.modalPresentationStyle = .fullScreen
     self.present(nextVC, animated: true)
+  }
+}
+
+extension SettingsViewController: UITabBarControllerDelegate {
+  func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+    myKurlyTableView.setContentOffset(.zero, animated: true)
   }
 }
