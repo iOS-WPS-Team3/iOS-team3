@@ -225,7 +225,7 @@ extension HomeMDTableCell {
   private func categoryMoved(_ currentPage: Int, direction: Bool) {
     guard categoryArray.count >= currentPage else { return }
     var MDTextWidth: CGFloat = 0
-    let label = UILabel()
+    let label = UILabel() // -> 텍스트 폰트 사이즈 지정해줘야 한다. 스크롤뷰의 텍스트와 동일하게
     for idx in 0..<currentPage { // getWidth() 카테고리 크기 구하는 함수
       label.text = categoryArray[idx]
       MDTextWidth += (label.getWidth() ?? 0) + 10 // getWidth() 텍스트 크기 구하는 함수

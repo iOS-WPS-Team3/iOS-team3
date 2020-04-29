@@ -18,7 +18,7 @@ class CategoryDetailCollectionViewCell: UICollectionViewCell {
     .then {
       $0.register(cell: ProductCollectionCell.self)
   }
-  private var categoryProductList: CategoryProudcutList? {
+  var categoryProductList: CategoryProudcutList? {
     didSet {
       setupFlowLayout()
       collectionView.reloadData()
@@ -44,7 +44,7 @@ class CategoryDetailCollectionViewCell: UICollectionViewCell {
   }
   // MARK: - Setup Attribute
   private func setupUI() {
-    collectionView.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 1, alpha: 1)
+    collectionView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.9529411765, blue: 0.9529411765, alpha: 1)
     collectionView.dataSource = self
     collectionView.delegate = self
     [collectionView] .forEach {
@@ -107,6 +107,7 @@ extension CategoryDetailCollectionViewCell: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     print(indexPath.row, "이 셀을 눌렀어요")
     let detailVC = DetailViewController()
+    detailVC.hidesBottomBarWhenPushed = true
     guard let categoryProductList = categoryProductList else { return }
     let productId = categoryProductList[indexPath.row].id
     detailVC.configure(productId: productId)
@@ -117,11 +118,14 @@ extension CategoryDetailCollectionViewCell: UICollectionViewDelegate {
 // MARK: - Alamofire
 extension CategoryDetailCollectionViewCell {
   func fetchCategory(id: Int, completionHandler: @escaping (Result<Data, Error>) -> Void) {
-    AF.request("http://15.164.49.32/kurly/category/\(id)/all").responseData { (response) in
+    AF.request("http://15.164.49.32/kurly/category/\(id)/all")
+      .validate(statusCode: [200])
+      .responseData { (response) in
       switch response.result {
       case .success(let data):
         completionHandler(.success(data))
       case .failure(let error):
+        print("fail")
         completionHandler(.failure(error))
       }
     }
@@ -130,13 +134,11 @@ extension CategoryDetailCollectionViewCell {
   func configure(id: Int) {
     // [weak self] 순환 참조를 막기 위해 써야 한다.
     fetchCategory(id: id) { [weak self] (result) in
+      guard let self = self else { return } // self가 옵셔널인지 체크
       switch result {
       case .success(let data):
-        guard
-          let self = self, // self가 옵셔널인지 체크
-          let list = try? JSONDecoder().decode(CategoryProudcutList.self, from: data)
-          // 디코딩이 잘되는 지 체크
-          else { return }
+        guard let list = try? JSONDecoder().decode(CategoryProudcutList.self, from: data)
+        else { return } // 디코딩이 잘되는 지 체크
         self.categoryProductList = list
       case .failure(let error):
         print(error)
@@ -146,7 +148,9 @@ extension CategoryDetailCollectionViewCell {
   }
   
   func fetchSubCategory(subId: Int, completionHandler: @escaping (Result<Data, Error>) -> Void) {
-    AF.request("http://15.164.49.32/kurly/subcategory/\(subId)/").responseData { (response) in
+    AF.request("http://15.164.49.32/kurly/subcategory/\(subId)/")
+      .validate(statusCode: [200])
+      .responseData { (response) in
       switch response.result {
       case .success(let data):
         completionHandler(.success(data))
@@ -165,16 +169,15 @@ extension CategoryDetailCollectionViewCell {
           // 디코딩이 잘되는 지 체크
           else { return }
         self.categoryProductList = list
-      case .failure(let error):
-        print(error)
-        print(error.localizedDescription)
+      case .failure:
+        KurlyNotification.shared.notification(text: "잠시후 다시 시도해주세요.")
       }
     }
   }
 }
 
-extension CategoryDetailCollectionViewCell: ProductCollectionCellDelegate {
-  func cartOrAlarmButtonTouched(_ collectionView: UICollectionView, _ button: UIButton, _ productIndexPath: IndexPath) {
+extension CategoryDetailCollectionViewCell: ProductCollectionCellDelegate {  
+  func cartOrAlarmButtonTouched(_ collectionView: UICollectionView,_ button: UIButton, _ productIndexPath: IndexPath) {
     guard let categoryProductList = categoryProductList else { return }
        let categoryProduct = categoryProductList[productIndexPath.row]
     

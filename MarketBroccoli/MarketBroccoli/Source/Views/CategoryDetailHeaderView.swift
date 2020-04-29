@@ -9,9 +9,8 @@
 import UIKit
 
 class CategoryDetailHeaderView: UIScrollView {
+  weak var customDelegate: MenuBarCategoryTouchProtocol?
   // MARK: - Properties
-  weak var customDelegate: MDCategoryTouchProtocol?
-  
   func categories(categories: [String]) {
     let labels = categories.map { name -> UILabel in
       let label = UILabel().then {
@@ -51,15 +50,6 @@ class CategoryDetailHeaderView: UIScrollView {
     }
   }
   
-  private let title = UIButton().then {
-    $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-    $0.setTitleColor(UIColor.gray, for: .normal)
-    //    $0.addTarget(self(), action: #selector(<#T##@objc method#>), for: .touchUpInside)
-  }
-  private let bottomLine = UIView().then {
-    $0.backgroundColor = .red
-  }
-  
     // MARK: - Life Cycle
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -74,32 +64,6 @@ class CategoryDetailHeaderView: UIScrollView {
   
   private func setupUI() {
     self.backgroundColor = .white
-//    self.contentSize = CGSize()
-//    self.isScrollEnabled = true
-    [bottomLine].forEach {
-      self.addSubview($0)
-    }
-    bottomLine.snp.makeConstraints {
-      $0.leading.trailing.bottom.equalToSuperview()
-      $0.height.equalTo(0.4)
-    }
-  }
-  private func setupTitle() {
-    [title].forEach {
-      self.addSubview($0)
-    }
-    title.snp.makeConstraints {
-      $0.top.equalToSuperview().offset(10)
-      $0.bottom.equalTo(bottomLine.snp.top).offset(-10)
-      $0.leading.equalToSuperview().offset(16)
-      $0.trailing.equalToSuperview().offset(-16)
-    }
-  }
-  func title(name: String) {
-    print(#function)
-    print("Content Size before set title :", self.contentSize)
-    title.setTitle(name, for: .normal)
-    print("Content Size after set title :", self.contentSize)
   }
 }
 extension CategoryDetailHeaderView {

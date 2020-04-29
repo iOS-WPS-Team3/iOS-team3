@@ -52,13 +52,14 @@ class CartViewController: UIViewController {
   
   private func setupAttribute() {
     title = "장바구니"
+    guard let navigationController = self.navigationController else { return }
     
-    navigationController?.do({
+    navigationController.do {
       $0.navigationBar.isTranslucent = false
       $0.navigationBar.tintColor = .black
       $0.navigationBar.barTintColor = .white
       $0.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
-    })
+    }
   }
   
   @objc
@@ -118,16 +119,21 @@ extension CartViewController: CartViewDataSource {
 extension CartViewController: CartProductTableViewCellDelegate {
   func productNameLabelTouched(_ label: UILabel, _ shoppingItemIndexPath: IndexPath) {
     guard let cart = cart else { return }
-    let id = cart[shoppingItemIndexPath.section].wishProducts[shoppingItemIndexPath.row].product.id
     
-    pushDetailViewController(id: id)
+    let id = cart[shoppingItemIndexPath.section].id == nil
+      ? cart[shoppingItemIndexPath.section].wishProducts[shoppingItemIndexPath.row].product.id
+      : cart[shoppingItemIndexPath.section].id ?? -1
+    
+    presentDetailViewController(id: id)
   }
   
   func productImageViewTouched(_ imageView: UIImageView, _ shoppingItemIndexPath: IndexPath) {
     guard let cart = cart else { return }
-    let id = cart[shoppingItemIndexPath.section].wishProducts[shoppingItemIndexPath.row].product.id
+    let id = cart[shoppingItemIndexPath.section].wishProducts.count == 1
+      ? cart[shoppingItemIndexPath.section].wishProducts[shoppingItemIndexPath.row].product.id
+      : cart[shoppingItemIndexPath.section].id ?? -1
     
-    pushDetailViewController(id: id)
+    presentDetailViewController(id: id)
   }
   
   func checkBoxTouched(_ checkBox: CheckBox, _ isChecked: Bool, _ shoppingItemIndexPath: IndexPath) {
@@ -369,7 +375,7 @@ extension CartViewController {
     cartView.setOrderButtonText(totalPrice: expectedAmountPayment)
   }
   
-  private func pushDetailViewController(id: Int) {
+  private func presentDetailViewController(id: Int) {
     let productDetailViewController = DetailViewController().then {
       $0.configure(productId: id)
     }

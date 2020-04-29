@@ -11,6 +11,17 @@ import UIKit
 extension UIViewController {
   func setupBroccoliNavigationBar(title: String) {
     self.title = title
+    
+    if title == "마켓브로콜리" {
+      let marketBroccoliImage = UIImage(named: "marketBroccoli")
+      
+      let imageView = UIImageView(image: marketBroccoliImage).then {
+        $0.contentMode = .scaleAspectFit
+      }
+      
+      navigationItem.titleView = imageView
+    }
+    
     guard let navigationController = navigationController else { return }
     
     navigationController.do {
@@ -20,6 +31,14 @@ extension UIViewController {
       $0.navigationBar.isTranslucent = false
       $0.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
+    
+    navigationItem.leftBarButtonItem = UIBarButtonItem(customView:
+      UIView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+    )
+    
+    navigationItem.rightBarButtonItem = UIBarButtonItem(customView:
+      UIView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+    )
   }
   
   func setupSubNavigationBar(title: String) {
@@ -27,6 +46,8 @@ extension UIViewController {
     
     navigationController?.do({
       $0.navigationBar.tintColor = .black
+      $0.navigationBar.barStyle = .default
+      $0.navigationBar.shadowImage = UIImage()
       $0.navigationBar.barTintColor = .white
       $0.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     })
@@ -73,17 +94,20 @@ extension UIViewController {
           
           guard let cartWithSizeImage: UIImage = UIGraphicsGetImageFromCurrentImageContext() else { return }
           UIGraphicsEndImageContext()
-          let resizedImage = imageWithImage(image: cartWithSizeImage, scaledToSize: CGSize(width: 40, height: 40))
+          let resizedImage = imageWithImage(image: cartWithSizeImage, scaledToSize: CGSize(width: 32, height: 32))
           
           button.setImage(resizedImage, for: .normal)
 
           button.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
           button.imageView?.contentMode = .scaleAspectFit
+          
+          self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
         case .failure(let error):
           let cartImage = UIImage(systemName: "cart")
-          let resizedImage = imageWithImage(image: cartImage ?? UIImage(), scaledToSize: CGSize(width: 40, height: 40))
+          let resizedImage = imageWithImage(image: cartImage ?? UIImage(), scaledToSize: CGSize(width: 32, height: 32))
           
           button.setImage(resizedImage, for: .normal)
+          self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
           print(error.localizedDescription)
         }
       }
@@ -91,9 +115,6 @@ extension UIViewController {
       button.addTarget(self, action: #selector(presentCartViewController), for: .touchUpInside)
     }
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: self, action: nil)
-    
-    self.navigationItem.rightBarButtonItem = nil
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartButton)
   }
   
   func addSubNavigationBarCartButton() {
