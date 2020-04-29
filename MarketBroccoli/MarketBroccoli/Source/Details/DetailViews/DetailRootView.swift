@@ -138,12 +138,8 @@ extension DetailRootView {
         categoryArray.append(DetailDescriptionTableView())
       case 1:
         categoryArray.append(detailImageView)
-      case 2:
-        categoryArray.append(DetailInfoTableView())
-      case 3...categoryCnt - 1:
-        categoryArray.append(UIView().then {
-          $0.backgroundColor = .kurlyMainPurple
-        })
+      case 2...categoryCnt - 1:
+        categoryArray.append(DetailCautionView())
       default:
         fatalError()
       }
