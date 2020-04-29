@@ -333,6 +333,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		70FF15F8245938C1006F25EF /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				7050F3192429CEBB00B8E13B /* CategoryViewController.swift */,
+				701C74C0244485B3009276FA /* CategoryDetailViewController.swift */,
+				70FF15F924593A9E006F25EF /* CategoryView */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		70FF15F924593A9E006F25EF /* CategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				7050F31D242A3BB300B8E13B /* CategoryTableViewCell.swift */,
+				70E8178224360DF70010EB4C /* CategorySubTableViewCell.swift */,
+				70FF15D024499660006F25EF /* CategoryDetailCollectionViewCell.swift */,
+				70BB543B243C879D00BE81F4 /* RecommendationTableViewCell.swift */,
+				70BB5441243CB3D200BE81F4 /* RecommendationCollectionViewCell.swift */,
+				70BB543F243C979A00BE81F4 /* CategorySectionHeaderView.swift */,
+				70FF15D22449A8FF006F25EF /* CategoryDetailHeaderView.swift */,
+			);
+			path = CategoryView;
+			sourceTree = "<group>";
+		};
 		7200E40D2446BD5A00FBA43F /* Cart */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,6 +495,7 @@
 		7C65ECAD2424677C0075606A /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				70FF15F8245938C1006F25EF /* Category */,
 				722A54D02452C23200C81F82 /* AddProductCart */,
 				722A54CF2452C11A00C81F82 /* Search */,
 				FA486BA724593577007AE9EE /* Mycurly */,
@@ -510,8 +535,6 @@
 			isa = PBXGroup;
 			children = (
 				7298BEFE242DDF2E005B0517 /* MarketBroccoliTabBarController.swift */,
-				7050F3192429CEBB00B8E13B /* CategoryViewController.swift */,
-				701C74C0244485B3009276FA /* CategoryDetailViewController.swift */,
 				70BB5437243B432F00BE81F4 /* BuyOftenViewController.swift */,
 			);
 			path = ViewControllers;
@@ -626,13 +649,6 @@
 		7C65ECC6242472F70075606A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7050F31D242A3BB300B8E13B /* CategoryTableViewCell.swift */,
-				70E8178224360DF70010EB4C /* CategorySubTableViewCell.swift */,
-				70FF15D024499660006F25EF /* CategoryDetailCollectionViewCell.swift */,
-				70BB543B243C879D00BE81F4 /* RecommendationTableViewCell.swift */,
-				70BB5441243CB3D200BE81F4 /* RecommendationCollectionViewCell.swift */,
-				70BB543F243C979A00BE81F4 /* CategorySectionHeaderView.swift */,
-				70FF15D22449A8FF006F25EF /* CategoryDetailHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
