@@ -91,8 +91,7 @@
     url: RequestCategory,
     method requestMethod: HTTPMethod,
     categoryId: Int,
-    completion: @escaping (Result<CategoryModel2, AFError>) -> Void)
-    {
+    completion: @escaping (Result<CategoryModel2, AFError>) -> Void) {
       AF.request(
         url.endPoint + "\(categoryId)/",
         method: requestMethod)
