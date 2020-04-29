@@ -43,6 +43,7 @@ extension EventView {
     self.backgroundColor = .white
     self.dataSource = self
     self.separatorStyle = .none
+    self.allowsSelection = false
     self.register(cell: EventTableViewCell.self)
   }
 }

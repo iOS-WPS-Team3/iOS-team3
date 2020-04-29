@@ -55,7 +55,6 @@ class DetailDescriptionBottomTableCell: UITableViewCell {
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    print(#function)
     setupUI()
   }
   
@@ -74,6 +73,7 @@ extension DetailDescriptionBottomTableCell {
     summaryLabel.text = model.summary
     nameLabel.text = model.name
     descriptionLabel.text = model.productModelDescription
+    descriptionLabel.lineSpacing(4)
     descriptionImageView.image = images["thumb"]
     detailImageView.image = images["detail"]
     checkPointImageView.image = images["check"]
