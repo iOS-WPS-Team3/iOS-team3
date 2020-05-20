@@ -111,7 +111,8 @@ extension CategoryDetailCollectionViewCell: UICollectionViewDelegate {
     guard let categoryProductList = categoryProductList else { return }
     let productId = categoryProductList[indexPath.row].id
     detailVC.configure(productId: productId)
-    (self.viewController as? CategoryDetailViewController)?.navigationController?.pushViewController(detailVC, animated: true)
+    (self.viewController as? CategoryDetailViewController)?
+      .navigationController?.pushViewController(detailVC, animated: true)
   }
 }
 
@@ -170,14 +171,14 @@ extension CategoryDetailCollectionViewCell {
           else { return }
         self.categoryProductList = list
       case .failure:
-        KurlyNotification.shared.notification(text: "잠시후 다시 시도해주세요.")
+        KurlyNotification.shared.show(text: "잠시후 다시 시도해주세요.", type: .warning)
       }
     }
   }
 }
 
 extension CategoryDetailCollectionViewCell: ProductCollectionCellDelegate {  
-  func cartOrAlarmButtonTouched(_ collectionView: UICollectionView,_ button: UIButton, _ productIndexPath: IndexPath) {
+  func cartOrAlarmButtonTouched(_ collectionView: UICollectionView, _ button: UIButton, _ productIndexPath: IndexPath) {
     guard let categoryProductList = categoryProductList else { return }
        let categoryProduct = categoryProductList[productIndexPath.row]
     

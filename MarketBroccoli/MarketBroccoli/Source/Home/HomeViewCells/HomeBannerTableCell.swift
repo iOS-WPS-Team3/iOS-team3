@@ -41,10 +41,10 @@ class HomeBannerTableCell: UITableViewCell {
     setupUI()
     DispatchQueue.main.async {
       self.scrollingTimer = Timer.scheduledTimer(
-      timeInterval: 3.0,
-      target: self,
-      selector: #selector(self.startTimer(_:)),
-      userInfo: nil, repeats: true)
+        timeInterval: 3.0,
+        target: self,
+        selector: #selector(self.startTimer(_:)),
+        userInfo: nil, repeats: true)
     }
   }
   
@@ -135,7 +135,11 @@ extension HomeBannerTableCell: UICollectionViewDataSource {
 
 // MARK: - CollectionView Delegate
 extension HomeBannerTableCell: UICollectionViewDelegate {
-  func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+  func scrollViewWillEndDragging(
+    _ scrollView: UIScrollView,
+    withVelocity velocity: CGPoint,
+    targetContentOffset: UnsafeMutablePointer<CGPoint>
+  ) {
     guard let bannerCnt = dummyData?.count else { return }
     imageCounter = imageCounter < bannerCnt ? imageCounter + 1 : 0
   }

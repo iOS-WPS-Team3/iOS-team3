@@ -99,7 +99,7 @@ extension RecommendationView {
       case .success(let data):
         self.homeImageModel = data
       case .failure:
-        KurlyNotification.shared.notice(text: "잠시후 다시시도하세요.")
+        KurlyNotification.shared.show(text: "잠시후 다시시도하세요.", type: .warning)
       }
     }
     success()
@@ -189,7 +189,7 @@ extension RecommendationView: UITableViewDataSource {
     case 4:
       guard let model = MDModel else { return UITableViewCell() }
       let cell = tableView.dequeue(HomeMDTableCell.self)
-      cell.configure(items: model.flatMap { $0 })
+      cell.configure(items: model)
       return cell
     case 5:
       guard let model = newModel else { return UITableViewCell() }

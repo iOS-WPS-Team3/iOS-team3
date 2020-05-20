@@ -104,7 +104,10 @@ extension HomeViewController {
 }
 
 extension HomeViewController: UITabBarControllerDelegate {
-  func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+  func tabBarController(
+    _ tabBarController: UITabBarController,
+    didSelect viewController: UIViewController
+  ) {
     guard let navi = viewController as? UINavigationController,
       let VC = navi.viewControllers[0] as? HomeViewController else { return }
     var moved = false

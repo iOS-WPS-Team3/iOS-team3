@@ -180,7 +180,10 @@ class CategoryDetailViewController: UIViewController {
 }
 // MARK: - UICollectionViewDelegate
 extension CategoryDetailViewController: UICollectionViewDelegate {
-  func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+  func scrollViewWillEndDragging(
+    _ scrollView: UIScrollView,
+    withVelocity velocity: CGPoint,
+    targetContentOffset: UnsafeMutablePointer<CGPoint>) {
     if scrollView == collectionView {
       let cellWidth = itemWidth * 2 + (UI.inset + UI.spacing * 2)
       var page = round(collectionView.contentOffset.x / cellWidth)
@@ -242,7 +245,7 @@ extension CategoryDetailViewController {
     }
     for idx in 0..<currentPage { // getWidth() 카테고리 크기 구하는 함수
       label.text = categoryData[categoryID].row[idx]
-      print("여기에 집중", categoryData[categoryID].row[idx])
+//      print("여기에 집중", categoryData[categoryID].row[idx])
       menuBarTextWidth += (label.getWidth() ?? 0) // getWidth() 텍스트 크기 구하는 함수
     }
     let textWidth = (label.getWidth() ?? 0)

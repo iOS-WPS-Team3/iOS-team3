@@ -273,7 +273,7 @@ extension HomeMDTableCell {
   }
   
   @objc private func categoryShowBtnTouched(_ sender: UIButton) {
-    print(sender.titleLabel?.text)
+    print(sender.titleLabel?.text ?? "category Show Btn")
   }
   
   func configure( items: [MainItem]? = nil) {
